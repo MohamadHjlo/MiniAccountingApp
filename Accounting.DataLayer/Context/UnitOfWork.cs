@@ -8,9 +8,9 @@ using Accounting.DataLayer.Services;
 
 namespace Accounting.DataLayer.Context
 {
-    public class UnitOfWork : IDisposable//وظیفه کنترل کردن بستر ارتباط با بانک و جلوگیری از دسترسی کلاس های خارجی بطور مستقیم به بانک
+    public class UnitOfWork : IDisposable
     {
-        //Accounting_DbEntities = همون کانتکست یا بستر ارتباط با بانک اطلاعاتی
+        
         Accounting_DBEntities db = new Accounting_DBEntities();
 
         private ICustomerRepository _customerRepository;
@@ -19,11 +19,11 @@ namespace Accounting.DataLayer.Context
         {
             get
             {
-                if (_customerRepository == null)//این همون ای ک.ریپوزیتوریه در واقع فقط یه اسم بش دادیم بشه به کاربردش
+                if (_customerRepository == null)
                 {
-                    _customerRepository = new CustomerRepository(db);//اینجام سمت چپ همون اسم اینترفیسه مثل اینه ک داری از اینتفریس یه چندریختی میزنی به کلاس ارث بری کنندش
+                    _customerRepository = new CustomerRepository(db);
                 }
-                return _customerRepository;//پس ازین به بعد برا ارتباط با بانکم فقط کافیه بعد از نمونه سازی از ی.اف ورک متد پابلیک کاستومرو فرواخوانی کنی این خودش تزریق و این داستانارو انجام میده و تورو متصل به اینترفیس و زیر مجموعش میکنه اینجوری این تنها راه اتصال به بانک و اینترفیسه
+                return _customerRepository;
             }
         }
 
